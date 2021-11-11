@@ -4,7 +4,7 @@ import { IJokeInfo } from "./services/ratingservice.js"; // preparar objeto de r
 
 //const jokeService = new JokeService;
 const jokesService = new JokesService;
-const container:HTMLElement = document.querySelector('.container') as HTMLElement;
+
 const nextButton: HTMLButtonElement = document.getElementById('next-button') as HTMLButtonElement;
 const result: HTMLElement = document.querySelector(".joke") as HTMLElement;
 const ratingBox: HTMLElement = document.querySelector(".rating-box") as HTMLElement;
@@ -15,20 +15,7 @@ let jokeInfo: IJokeInfo;
 
 ratingBlock.innerHTML = `<li> <button type='button' id="uno" class="rating-item">&#128531;</button></li>
 <li> <button type='button' id="dos"  class="rating-item">&#128528;</button></li>
-<li> <button type='button' id="tres" class="rating-item">&#128518;</button></li>`;
-
-function randombg(){
-    var random= Math.floor(Math.random() * 7) + 0;
-    var bigSize = ["url('../img/blob_0.svg')",
-    "url('../img/blob_1.svg')",
-    "url('../img/blob_2.svg')",
-    "url('../img/blob_3.svg')",
-    "url('../img/blob_4.svg')",
-    "url('../img/blob_5.svg')",
-    "url('../img/blob_6.svg')",
-       ];
-   return bigSize[random].toString();
-  }
+<li> <button type='button' id="tres" class="rating-item">&#128518;</button></li>`
 
 nextButton.addEventListener('click', putJoke);
 function putJoke() {
@@ -59,22 +46,19 @@ function putJoke() {
     if(jokeInfo !== undefined ){
         reportJokes.push(jokeInfo);  } // mostrar resultado de evaluacion
     console.log(reportJokes);
-    container.style.backgroundImage = randombg();
 }
 
 //obtener datos de tiempo
-function getWeather(): Promise<any> {
+function getWeather() {
     return  fetch("https://api.openweathermap.org/data/2.5/weather?q=barcelona&units=metric&appid=644a219f426a3224328405aa28d80b8f").then(function (res) { return res.json(); })
         .then(function (res) {
             return res;
-        }
-        );
+        });
 }
 
 // mostrar datos de tiempo
-// let weather:HTMLElement = document.querySelector(".weather") as HTMLElement;
-// getWeather().then(function (data){
-// weather.innerHTML = `temperatura hoy: ${data.main.temp} &degC ` ;
-// })
-
+let weather:HTMLElement = document.querySelector(".weather") as HTMLElement;
+getWeather().then(function (data){
+weather.innerHTML = `temperatura hoy: ${data.main.temp} &degC ` ;
+})
 
