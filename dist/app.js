@@ -3,6 +3,7 @@ import { JokesService } from "./services/jokeservice.js"; // obtener datos de AP
 import { IJokeInfo } from "./services/ratingservice.js"; // preparar objeto de resultado
 //const jokeService = new JokeService;
 const jokesService = new JokesService;
+const container = document.querySelector('.container');
 const nextButton = document.getElementById('next-button');
 const result = document.querySelector(".joke");
 const ratingBox = document.querySelector(".rating-box");
@@ -13,6 +14,18 @@ let jokeInfo;
 ratingBlock.innerHTML = `<li> <button type='button' id="uno" class="rating-item">&#128531;</button></li>
 <li> <button type='button' id="dos"  class="rating-item">&#128528;</button></li>
 <li> <button type='button' id="tres" class="rating-item">&#128518;</button></li>`;
+function randombg() {
+    var random = Math.floor(Math.random() * 7) + 0;
+    var bigSize = ["url('../img/blob_0.svg')",
+        "url('../img/blob_1.svg')",
+        "url('../img/blob_2.svg')",
+        "url('../img/blob_3.svg')",
+        "url('../img/blob_4.svg')",
+        "url('../img/blob_5.svg')",
+        "url('../img/blob_6.svg')",
+    ];
+    return bigSize[random].toString();
+}
 nextButton.addEventListener('click', putJoke);
 function putJoke() {
     jokesService.fetchData().then(joke => {
@@ -41,6 +54,7 @@ function putJoke() {
         reportJokes.push(jokeInfo);
     } // mostrar resultado de evaluacion
     console.log(reportJokes);
+    container.style.backgroundImage = randombg();
 }
 //obtener datos de tiempo
 function getWeather() {
@@ -50,8 +64,8 @@ function getWeather() {
     });
 }
 // mostrar datos de tiempo
-let weather = document.querySelector(".weather");
-getWeather().then(function (data) {
-    weather.innerHTML = `temperatura hoy: ${data.main.temp} &degC `;
-});
+// let weather:HTMLElement = document.querySelector(".weather") as HTMLElement;
+// getWeather().then(function (data){
+// weather.innerHTML = `temperatura hoy: ${data.main.temp} &degC ` ;
+// })
 //# sourceMappingURL=app.js.map
