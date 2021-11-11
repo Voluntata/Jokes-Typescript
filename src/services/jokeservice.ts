@@ -1,5 +1,5 @@
 
-//-----------EJERCICIO 1------------------------
+//-----------Nivel 1------------------------
 
 //import { IJoke } from "../interfaces/interfaces"
 // export class JokeService {
@@ -17,7 +17,7 @@
 
 //    }}
 
-//----------EJERCICIO 2-----------------------------------
+//----------Nivel 2-----------------------------------
 
 export class JokesService{
   public  fetchData = async () => {
